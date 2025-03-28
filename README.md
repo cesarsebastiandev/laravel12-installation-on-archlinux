@@ -9,7 +9,11 @@ Este es el repositorio con instrucciones del video de YouTube: [🔧 Personaliza
 Donaciones por Paypal: [https://www.paypal.com/donate/?hosted_button_id=UNLT89FVZF6TE](https://www.paypal.com/donate/?hosted_button_id=UNLT89FVZF6TE)
 
 ## Instrucciones paso a paso:
-
+---
+## Nota. Primero te invito a ver el video para que observes todo el flujo de las configuraciones que hice. Enseguida, ya podrias comenzar con todo.
+---
+## INICIO DE LAS INSTRUCCIONES:
+---
 ## Actualizar el repositorio oficial de ArchLinux
 
 ```
@@ -128,13 +132,104 @@ docker ps -a
 ```
 ---
 
+## INSTALACION DE CHAOTIC AUR
+---
 
+## Actualizar el repositorio oficial de ArchLinux
 
+```
+sudo pacman -Sy
+```
+---
 
-## PENDIENTE AGREGAR LA INSTALACION DE CHAOTIC AUR
+## Actualizar los paquetes ya instalados en ArchLinux
 
+```
+sudo pacman -Syu
+```
+---
 
+## Instalar estos tres paquetes:
 
+```
+sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
+sudo pacman-key --lsign-key 3056513887B78AEB
+sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+```
+---
+## Abrimos el archivo de configuracion de pacman
+
+```
+sudo nano /etc/pacman.conf
+```
+### Debes agregar esto, por donde estan los paquetes de multilib:
+```
+[chaotic-aur]
+Include = /etc/pacman.d/chaotic-mirrorlist
+```
+### Debes quitarle el # a estos paquetes:
+`#Color`
+`#ParallelDownloads`
+### Corregido, quedaria asi:
+```
+Color
+ParallelDownloads = 10
+ILoveCandy
+```
+### Guardo los cambios presionando Ctrl + o y luego Ctrl + x
+---
+
+## Actualizar los paquetes ya instalados en ArchLinux nuevamente
+
+```
+sudo pacman -Syu
+```
+---
+
+## Instalar pamac
+
+```
+sudo pacman -Sy pamac
+```
+---
+
+## Reiniciar nuestra laptop
+
+```
+reboot
+```
+---
+
+## Presionar la tecla windows o dar clic en la esquina inferior izquierda para buscar esto:
+
+```
+Add/Remove Software
+```
+## Le damos clic a la opcion que nos salga y enseguida se abre una ventana donde haremos lo siguiente:
+`Darle clic al menu/icono de hamburguesa`
+`Darle clic en preferences y ponemos nuestra password, enseguida se abre una nueva ventana`
+## Lo que haremos en esa ventana es cambiar el tiempo de actualizacion a cada dia:
+`Updates check frequency`
+`everyday`
+## Estando en esta misma ventana, le damos clic en Third Party y se va abrir una nueva ventana:
+`Habilitamos Enable AUR support`
+`Habilitamos Check for updates`
+## Hacemos lo mismo con:
+`Habilitamos Enable flatpak support`
+`Habilitamos Check for updates`
+## Solo quedar cerrar todas esas ventanas que se abrieron
+---
+
+## Abrimos una terminal y buscamos visual studio code
+
+```
+pamac search vscode
+```
+## Nos muestra varias opciones, pero vamos instalar esta:
+```
+pamac install visual-studio-code-bin
+```
+## La ventaja de instalarlo de esta manera, es que al escribir code . en la terminal y ubicacion de mi proyecto ya lo abre con vscode directamente.
 
 ---
 ## Continuamos con la instalacion de nodejs usando nvm para manejar diferentes versiones
@@ -330,12 +425,6 @@ docker ps
 docker ps -a 
 ```
 ---
-
-## Revisar la lista de imagenes que tengo
-```
-docker images
-```
----
 ## Revisar la lista de imagenes que tengo
 ```
 docker images
@@ -371,6 +460,10 @@ docker stop nombre_contenedor
 ```
 docker rm nombre_contenedor
 ```
+---
+## Cualquier duda que tengas, no olvides ver el video una y otra vez. O dejar tus dudas en la caja de los comentarios en Youtube.
+## Te he dejado esta serie de instrucciones para que no pases por los mismos errores que yo.
+
 ---
 ## FIN
 
